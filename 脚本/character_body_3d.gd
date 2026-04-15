@@ -20,10 +20,15 @@ extends CharacterBody3D
 @onready var mesh_parent = $"../Mesh"
 @onready var camera1 = $Camera
 
+@export var 阶数 = 2
+var mesh_数量 = 4
+
 var cameron : bool
 var 变量1 = true
 
 func _ready() -> void:
+	
+	mesh_数量 = 阶数 * 阶数 * 阶数
 	
 	for area in mesh:
 		add_to_group("可检测区域")
@@ -173,6 +178,3 @@ func _on_面_body_entered(body: Node3D) -> void:
 		print("面选择可检测区域横")
 	pass # Replace with function body.
 	
-func 放入():
-	
-	pass
