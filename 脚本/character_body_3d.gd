@@ -4,9 +4,9 @@ extends CharacterBody3D
 @onready var 竖 = $"竖"
 @onready var 面 = $"面"
 
-@onready var 层选择 = $"横/层选择"
-@onready var 列选择 = $"竖/列选择"
-@onready var 面选择 = $"面/深度选择"
+@onready var 层选择 = $"../顺序/层选择"
+@onready var 列选择 = $"../顺序/列选择"
+@onready var 面选择 = $"../顺序/面选择"
 
 @onready var mesh : Array[Area3D] = [
 	$"../Mesh/1",$"../Mesh/2",$"../Mesh/3", $"../Mesh/4", 
@@ -33,32 +33,45 @@ func _ready() -> void:
 	cameron = false
 	pass
 
+
 func _input(event: InputEvent) -> void:
-	pass
+	# 简单 安全 不报错
+	if Input.is_action_just_pressed("X"):
+		print("X 键：清空所有选择器里的魔方")
+
+		# 清空 层选择
+	if 层选择 != null:
+		for child in 层选择.get_children():
+			if child is CharacterBody3D and child != self:
+				child.reparent(mesh_parent)
+
+		# 清空 列选择
+		if 列选择 != null:
+			for child in 列选择.get_children():
+				if child is CharacterBody3D and child != self:
+					child.reparent(mesh_parent)
+
+		# 清空 面选择
+		if 面选择 != null:
+			for child in 面选择.get_children():
+				if child is CharacterBody3D and child != self:
+					child.reparent(mesh_parent)
 
 func _physics_process(delta: float) -> void:
+	Input.action_press("X")
 	#按下R F C键选择要旋转的面
 	if Input.is_action_just_pressed("R"):
 		print("层")
+		for child in 层选择.get_children():
+			child.reparent(mesh_parent)
 		横.visible = !横.visible 
-		if 变量1 == true:
-			print(变量1)
-			横.set_process_mode(Node.PROCESS_MODE_INHERIT)
-			变量1 = false
-			return
-		if 变量1 == false:
-			print(变量1)
-			横.set_process_mode(Node.PROCESS_MODE_DISABLED)
-			变量1 = true
+		横.set_process_mode(Node.PROCESS_MODE_INHERIT)
 		竖.set_process_mode(Node.PROCESS_MODE_DISABLED)
 		竖.visible = false
 		面.set_process_mode(Node.PROCESS_MODE_DISABLED)
 		面.visible = false
 	if 横.visible == true:
 		if Input.is_action_just_pressed("鼠标左键"):
-			for 子节点 in 层选择.get_children():
-				print(子节点)
-				子节点.reparent(mesh_parent)
 			横.position.y += 2
 			横.position.y = clamp(横.position.y,-2,2)
 		if Input.is_action_just_pressed("鼠标右键"):
@@ -80,7 +93,7 @@ func _physics_process(delta: float) -> void:
 		if Input.is_action_just_pressed("鼠标右键"):
 			竖.position.x -= 2
 			竖.position.x = clamp(竖.position.x,-2,2)
-			
+
 	if Input.is_action_just_pressed("C"):
 		print("面")
 		面.visible = !面.visible
@@ -89,7 +102,6 @@ func _physics_process(delta: float) -> void:
 		横.visible = false
 		竖.set_process_mode(Node.PROCESS_MODE_DISABLED)
 		竖.visible = false
-		
 	if 面.visible == true:
 		if Input.is_action_just_pressed("鼠标左键"):
 			for 子节点 in 层选择.get_children():
@@ -103,7 +115,7 @@ func _physics_process(delta: float) -> void:
 				子节点.reparent(mesh_parent)
 			面.position.z -= 2
 			面.position.z = clamp(面.position.z,2,6)
-	
+
 	#按下A D分别为顺时针和逆时针旋转
 	if Input.is_action_just_pressed("A"):
 		层选择.rotation.y += PI/4
@@ -123,7 +135,7 @@ func _physics_process(delta: float) -> void:
 	if Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
 		camera1.rotation.y -= camer.x * 0.01 * 0.01 * 0.1
 		camera1.rotation.x += camer.y * 0.01 * 0.01 * 0.1
-		camera1.rotation.x = clamp(camera1.rotation.x,-PI/2 , PI/2-PI/3)
+		#camera1.rotation.x = clamp(camera1.rotation.x,-PI/2 , PI/2-PI/3)
 	#鼠标滚轮缩放
 	if Input.is_action_just_pressed("鼠标滚轮上"):
 		print("up")
@@ -140,6 +152,7 @@ func _physics_process(delta: float) -> void:
 		else:
 			Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 
+var suo = false
 
 func _on_横_body_entered(body: Node3D) -> void:
 	if body is CharacterBody3D:
@@ -160,7 +173,6 @@ func _on_面_body_entered(body: Node3D) -> void:
 		print("面选择可检测区域横")
 	pass # Replace with function body.
 	
-	#func _on_竖_body_entered(body: Node3D) -> void:
-	#if body.is_in_group("可检测区域"):
-		#body.reparent(列选择)
-		#print("列选择可检测区域竖")
+func 放入():
+	
+	pass

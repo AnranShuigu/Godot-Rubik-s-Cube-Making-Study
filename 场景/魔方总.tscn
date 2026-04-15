@@ -1,9 +1,37 @@
-[gd_scene load_steps=12 format=3 uid="uid://dglnmfa30hkq3"]
+[gd_scene format=3 uid="uid://dglnmfa30hkq3"]
 
-[ext_resource type="Script" uid="uid://bh6c8usgijdhe" path="res://脚本/魔方总.gd" id="1_uwp1s"]
 [ext_resource type="PackedScene" uid="uid://dpkxc4525ejfb" path="res://资源/魔方.glb" id="1_yuyxg"]
 [ext_resource type="Script" uid="uid://bc5eccwogiojn" path="res://脚本/character_body_3d.gd" id="3_uwp1s"]
 [ext_resource type="PackedScene" uid="uid://ph5hlxts4yae" path="res://资源/框.glb" id="4_uwp1s"]
+
+[sub_resource type="GDScript" id="GDScript_dnla8"]
+script/source = "extends Node3D
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	pass
+"
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_rdhn8"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_kfgeg"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_dnla8"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_uwp1s"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_uwp1s"]
+albedo_color = Color(0, 1, 1, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_lngn0"]
+material = SubResource("StandardMaterial3D_uwp1s")
+flip_faces = true
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_uwp1s"]
 sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
@@ -18,270 +46,237 @@ sky = SubResource("Sky_lngn0")
 tonemap_mode = 2
 glow_enabled = true
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_rdhn8"]
+[node name="Node3D" type="Node3D" unique_id=929692904]
+script = SubResource("GDScript_dnla8")
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_kfgeg"]
+[node name="Mesh" type="Node3D" parent="." unique_id=1583168146]
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_dnla8"]
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_uwp1s"]
-
-[node name="Node3D" type="Node3D"]
-script = ExtResource("1_uwp1s")
-
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource("Environment_xl75a")
-
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, 0, 0, 0)
-shadow_enabled = true
-
-[node name="Mesh" type="Node3D" parent="."]
-
-[node name="1" parent="Mesh" instance=ExtResource("1_yuyxg")]
+[node name="1" parent="Mesh" unique_id=174871546 instance=ExtResource("1_yuyxg")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, -2, -2)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Mesh/1"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Mesh/1" unique_id=1485489369]
 shape = SubResource("BoxShape3D_rdhn8")
 
-[node name="2" parent="Mesh" instance=ExtResource("1_yuyxg")]
+[node name="2" parent="Mesh" unique_id=1431718794 instance=ExtResource("1_yuyxg")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, -2, 0)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Mesh/2"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Mesh/2" unique_id=1004950592]
 shape = SubResource("BoxShape3D_rdhn8")
 
-[node name="3" parent="Mesh" instance=ExtResource("1_yuyxg")]
+[node name="3" parent="Mesh" unique_id=2010210529 instance=ExtResource("1_yuyxg")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, -2, 2)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Mesh/3"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Mesh/3" unique_id=692178152]
 shape = SubResource("BoxShape3D_rdhn8")
 
-[node name="4" parent="Mesh" instance=ExtResource("1_yuyxg")]
+[node name="4" parent="Mesh" unique_id=88357193 instance=ExtResource("1_yuyxg")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, -2)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Mesh/4"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Mesh/4" unique_id=1278881881]
 shape = SubResource("BoxShape3D_rdhn8")
 
-[node name="5" parent="Mesh" instance=ExtResource("1_yuyxg")]
+[node name="5" parent="Mesh" unique_id=414748314 instance=ExtResource("1_yuyxg")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 0)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Mesh/5"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Mesh/5" unique_id=863963689]
 shape = SubResource("BoxShape3D_rdhn8")
 
-[node name="6" parent="Mesh" instance=ExtResource("1_yuyxg")]
+[node name="6" parent="Mesh" unique_id=1289969980 instance=ExtResource("1_yuyxg")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 2)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Mesh/6"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Mesh/6" unique_id=1455398122]
 shape = SubResource("BoxShape3D_rdhn8")
 
-[node name="7" parent="Mesh" instance=ExtResource("1_yuyxg")]
+[node name="7" parent="Mesh" unique_id=1694648954 instance=ExtResource("1_yuyxg")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 2, -2)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Mesh/7"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Mesh/7" unique_id=2036447330]
 shape = SubResource("BoxShape3D_rdhn8")
 
-[node name="8" parent="Mesh" instance=ExtResource("1_yuyxg")]
+[node name="8" parent="Mesh" unique_id=1764100966 instance=ExtResource("1_yuyxg")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 2, 0)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Mesh/8"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Mesh/8" unique_id=1160514180]
 shape = SubResource("BoxShape3D_rdhn8")
 
-[node name="9" parent="Mesh" instance=ExtResource("1_yuyxg")]
+[node name="9" parent="Mesh" unique_id=1044720926 instance=ExtResource("1_yuyxg")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 2, 2)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Mesh/9"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Mesh/9" unique_id=1004464277]
 shape = SubResource("BoxShape3D_rdhn8")
 
-[node name="10" parent="Mesh" instance=ExtResource("1_yuyxg")]
+[node name="10" parent="Mesh" unique_id=1588655337 instance=ExtResource("1_yuyxg")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2, -2)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Mesh/10"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Mesh/10" unique_id=168968767]
 shape = SubResource("BoxShape3D_rdhn8")
 
-[node name="11" parent="Mesh" instance=ExtResource("1_yuyxg")]
+[node name="11" parent="Mesh" unique_id=1385011276 instance=ExtResource("1_yuyxg")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2, 0)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Mesh/11"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Mesh/11" unique_id=344800803]
 shape = SubResource("BoxShape3D_rdhn8")
 
-[node name="12" parent="Mesh" instance=ExtResource("1_yuyxg")]
+[node name="12" parent="Mesh" unique_id=769447214 instance=ExtResource("1_yuyxg")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2, 2)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Mesh/12"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Mesh/12" unique_id=110111478]
 shape = SubResource("BoxShape3D_rdhn8")
 
-[node name="13" parent="Mesh" instance=ExtResource("1_yuyxg")]
+[node name="13" parent="Mesh" unique_id=1000129791 instance=ExtResource("1_yuyxg")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Mesh/13"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Mesh/13" unique_id=1538393627]
 shape = SubResource("BoxShape3D_rdhn8")
 
-[node name="14" parent="Mesh" instance=ExtResource("1_yuyxg")]
+[node name="14" parent="Mesh" unique_id=107354026 instance=ExtResource("1_yuyxg")]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Mesh/14"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Mesh/14" unique_id=52265828]
 shape = SubResource("BoxShape3D_rdhn8")
 
-[node name="15" parent="Mesh" instance=ExtResource("1_yuyxg")]
+[node name="15" parent="Mesh" unique_id=361912289 instance=ExtResource("1_yuyxg")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Mesh/15"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Mesh/15" unique_id=1383386590]
 shape = SubResource("BoxShape3D_rdhn8")
 
-[node name="16" parent="Mesh" instance=ExtResource("1_yuyxg")]
+[node name="16" parent="Mesh" unique_id=398407528 instance=ExtResource("1_yuyxg")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, -2)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Mesh/16"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Mesh/16" unique_id=1347007331]
 shape = SubResource("BoxShape3D_rdhn8")
 
-[node name="17" parent="Mesh" instance=ExtResource("1_yuyxg")]
+[node name="17" parent="Mesh" unique_id=2067064447 instance=ExtResource("1_yuyxg")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Mesh/17"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Mesh/17" unique_id=960205312]
 shape = SubResource("BoxShape3D_rdhn8")
 
-[node name="18" parent="Mesh" instance=ExtResource("1_yuyxg")]
+[node name="18" parent="Mesh" unique_id=1328557338 instance=ExtResource("1_yuyxg")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 2)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Mesh/18"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Mesh/18" unique_id=565406168]
 shape = SubResource("BoxShape3D_rdhn8")
 
-[node name="19" parent="Mesh" instance=ExtResource("1_yuyxg")]
+[node name="19" parent="Mesh" unique_id=1914278332 instance=ExtResource("1_yuyxg")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, -2, -2)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Mesh/19"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Mesh/19" unique_id=311235767]
 shape = SubResource("BoxShape3D_rdhn8")
 
-[node name="20" parent="Mesh" instance=ExtResource("1_yuyxg")]
+[node name="20" parent="Mesh" unique_id=1708059956 instance=ExtResource("1_yuyxg")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, -2, 0)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Mesh/20"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Mesh/20" unique_id=195881923]
 shape = SubResource("BoxShape3D_rdhn8")
 
-[node name="21" parent="Mesh" instance=ExtResource("1_yuyxg")]
+[node name="21" parent="Mesh" unique_id=785323718 instance=ExtResource("1_yuyxg")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, -2, 2)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Mesh/21"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Mesh/21" unique_id=525587880]
 shape = SubResource("BoxShape3D_rdhn8")
 
-[node name="22" parent="Mesh" instance=ExtResource("1_yuyxg")]
+[node name="22" parent="Mesh" unique_id=725347332 instance=ExtResource("1_yuyxg")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, -2)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Mesh/22"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Mesh/22" unique_id=1565143014]
 shape = SubResource("BoxShape3D_rdhn8")
 
-[node name="23" parent="Mesh" instance=ExtResource("1_yuyxg")]
+[node name="23" parent="Mesh" unique_id=2086365124 instance=ExtResource("1_yuyxg")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 0)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Mesh/23"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Mesh/23" unique_id=874989298]
 shape = SubResource("BoxShape3D_rdhn8")
 
-[node name="24" parent="Mesh" instance=ExtResource("1_yuyxg")]
+[node name="24" parent="Mesh" unique_id=832742815 instance=ExtResource("1_yuyxg")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 2)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Mesh/24"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Mesh/24" unique_id=2095054612]
 shape = SubResource("BoxShape3D_rdhn8")
 
-[node name="25" parent="Mesh" instance=ExtResource("1_yuyxg")]
+[node name="25" parent="Mesh" unique_id=302348766 instance=ExtResource("1_yuyxg")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 2, -2)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Mesh/25"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Mesh/25" unique_id=465228465]
 shape = SubResource("BoxShape3D_rdhn8")
 
-[node name="26" parent="Mesh" instance=ExtResource("1_yuyxg")]
+[node name="26" parent="Mesh" unique_id=763798701 instance=ExtResource("1_yuyxg")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 2, 0)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Mesh/26"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Mesh/26" unique_id=856445600]
 shape = SubResource("BoxShape3D_rdhn8")
 
-[node name="27" parent="Mesh" instance=ExtResource("1_yuyxg")]
+[node name="27" parent="Mesh" unique_id=1577856082 instance=ExtResource("1_yuyxg")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 2, 2)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Mesh/27"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Mesh/27" unique_id=2065018755]
 shape = SubResource("BoxShape3D_rdhn8")
 
-[node name="顺序" type="Node3D" parent="."]
-visible = false
+[node name="顺序" type="Node3D" parent="." unique_id=1684276470]
 
-[node name="层" type="Node3D" parent="顺序"]
+[node name="层选择" type="Node3D" parent="顺序" unique_id=1302704903]
 
-[node name="第一层" type="Node3D" parent="顺序/层"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2, 0)
+[node name="列选择" type="Node3D" parent="顺序" unique_id=1488797577]
 
-[node name="第二层" type="Node3D" parent="顺序/层"]
+[node name="面选择" type="Node3D" parent="顺序" unique_id=1833885068]
 
-[node name="第三层" type="Node3D" parent="顺序/层"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
-
-[node name="列" type="Node3D" parent="顺序"]
-visible = false
-
-[node name="第一列" type="Node3D" parent="顺序/列"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 0)
-
-[node name="第二列" type="Node3D" parent="顺序/列"]
-
-[node name="第三列" type="Node3D" parent="顺序/列"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 0)
-
-[node name="深度" type="Node3D" parent="顺序"]
-
-[node name="第一排" type="Node3D" parent="顺序/深度"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2)
-
-[node name="第二排" type="Node3D" parent="顺序/深度"]
-
-[node name="第三排" type="Node3D" parent="顺序/深度"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2)
-
-[node name="CharacterBody3D" type="CharacterBody3D" parent="."]
+[node name="CharacterBody3D" type="CharacterBody3D" parent="." unique_id=1377642847]
 script = ExtResource("3_uwp1s")
 
-[node name="横" type="Area3D" parent="CharacterBody3D"]
+[node name="横" type="Area3D" parent="CharacterBody3D" unique_id=705405335]
 process_mode = 4
 visible = false
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D/横"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D/横" unique_id=128267362]
 transform = Transform3D(5.4, 0, 0, 0, 1.8, 0, 0, 0, 5.4, 0, 0, 0)
 shape = SubResource("BoxShape3D_kfgeg")
 
-[node name="层选择" type="Node3D" parent="CharacterBody3D/横"]
-
-[node name="框" parent="CharacterBody3D/横" instance=ExtResource("4_uwp1s")]
+[node name="框" parent="CharacterBody3D/横" unique_id=866077689 instance=ExtResource("4_uwp1s")]
 transform = Transform3D(-4.41485e-08, -1.01, 0, 1.01, -4.41485e-08, 0, 0, 0, 1.01, 0, -1, -3)
 
-[node name="竖" type="Area3D" parent="CharacterBody3D"]
+[node name="竖" type="Area3D" parent="CharacterBody3D" unique_id=319904408]
 process_mode = 4
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 0)
 visible = false
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D/竖"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D/竖" unique_id=1565809250]
 transform = Transform3D(1.8, 0, 0, 0, 5.4, 0, 0, 0, 5.4, 0, 0, 0)
 shape = SubResource("BoxShape3D_dnla8")
 
-[node name="列选择" type="Node3D" parent="CharacterBody3D/竖"]
-
-[node name="框" parent="CharacterBody3D/竖" instance=ExtResource("4_uwp1s")]
+[node name="框" parent="CharacterBody3D/竖" unique_id=120709288 instance=ExtResource("4_uwp1s")]
 transform = Transform3D(1.01, 0, 0, 0, 1.01, 0, 0, 0, 1.01, -1, 0, -3)
 
-[node name="面" type="Area3D" parent="CharacterBody3D"]
+[node name="面" type="Area3D" parent="CharacterBody3D" unique_id=1816383684]
 process_mode = 4
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2)
 visible = false
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D/面"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D/面" unique_id=1376888990]
 transform = Transform3D(5.4, 0, 0, 0, 5.4, 0, 0, 0, 1.8, 0, 0, -4)
 shape = SubResource("BoxShape3D_uwp1s")
 
-[node name="深度选择" type="Node3D" parent="CharacterBody3D/面"]
-
-[node name="框" parent="CharacterBody3D/面" instance=ExtResource("4_uwp1s")]
+[node name="框" parent="CharacterBody3D/面" unique_id=375519480 instance=ExtResource("4_uwp1s")]
 transform = Transform3D(-4.41485e-08, -1.01, 0, -4.41485e-08, 1.92979e-15, 1.01, -1.01, 4.41485e-08, -4.41485e-08, 0, -3, -3)
 
-[node name="Camera" type="Node3D" parent="CharacterBody3D"]
+[node name="Camera" type="Node3D" parent="CharacterBody3D" unique_id=1177638758]
 transform = Transform3D(1, 0, 2.98023e-08, 0, 1, 0, -2.98023e-08, 0, 1, -1.90735e-06, 9.53674e-07, -1.90735e-06)
 
-[node name="Camera3D" type="Camera3D" parent="CharacterBody3D/Camera"]
+[node name="Camera3D" type="Camera3D" parent="CharacterBody3D/Camera" unique_id=369144574]
 transform = Transform3D(-1, 0, 0, -1.77636e-15, 0.866025, 0.5, -2.98023e-08, 0.5, -0.866025, 0, 12, -12)
+
+[node name="环境" type="Node3D" parent="." unique_id=1234961631]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="环境" unique_id=114124457]
+transform = Transform3D(50, 0, 0, 0, 50, 0, 0, 0, 50, 0, 0, 0)
+mesh = SubResource("SphereMesh_lngn0")
+skeleton = NodePath("../..")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="环境" unique_id=370675486]
+environment = SubResource("Environment_xl75a")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="环境" unique_id=966712078]
+transform = Transform3D(-0.8660253, -0.4330129, 0.2500001, 0, 0.49999994, 0.86602545, -0.50000024, 0.74999994, -0.43301257, 0, 0, 0)
+shadow_enabled = true
 
 [connection signal="body_entered" from="CharacterBody3D/横" to="CharacterBody3D" method="_on_横_body_entered"]
 [connection signal="body_entered" from="CharacterBody3D/竖" to="CharacterBody3D" method="_on_竖_body_entered"]
