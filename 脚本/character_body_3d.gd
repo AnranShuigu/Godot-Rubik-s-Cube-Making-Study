@@ -3,6 +3,11 @@ extends CharacterBody3D
 @onready var 横 = $"横"
 @onready var 竖 = $"竖"
 @onready var 面 = $"面"
+
+@onready var 层选择 = $"横/层选择"
+@onready var 列选择 = $"竖/列选择"
+@onready var 面选择 = $"面/深度选择"
+
 @onready var mesh : Array[Area3D] = [
 	$"../Mesh/1",$"../Mesh/2",$"../Mesh/3", $"../Mesh/4", 
 	$"../Mesh/5", $"../Mesh/6", $"../Mesh/7", $"../Mesh/8",
@@ -12,13 +17,11 @@ extends CharacterBody3D
 	$"../Mesh/21", $"../Mesh/22", $"../Mesh/23", $"../Mesh/24", 
 	$"../Mesh/25", $"../Mesh/26", $"../Mesh/27"
 	]
-@onready var 层选择 = $"横/层选择"
-@onready var 列选择 = $"竖/列选择"
-@onready var 面选择 = $"面/深度选择"
+@onready var mesh_parent = $"../Mesh"
 @onready var camera1 = $Camera
-@onready var camera2 = $Camera/Camera3D
-@onready var 方块源 = $"../Mesh"
+
 var cameron : bool
+var 变量1 = true
 
 func _ready() -> void:
 	
@@ -30,13 +33,23 @@ func _ready() -> void:
 	cameron = false
 	pass
 
+func _input(event: InputEvent) -> void:
+	pass
 
 func _physics_process(delta: float) -> void:
 	#按下R F C键选择要旋转的面
 	if Input.is_action_just_pressed("R"):
 		print("层")
 		横.visible = !横.visible 
-		横.set_process_mode(Node.PROCESS_MODE_INHERIT)
+		if 变量1 == true:
+			print(变量1)
+			横.set_process_mode(Node.PROCESS_MODE_INHERIT)
+			变量1 = false
+			return
+		if 变量1 == false:
+			print(变量1)
+			横.set_process_mode(Node.PROCESS_MODE_DISABLED)
+			变量1 = true
 		竖.set_process_mode(Node.PROCESS_MODE_DISABLED)
 		竖.visible = false
 		面.set_process_mode(Node.PROCESS_MODE_DISABLED)
@@ -44,7 +57,8 @@ func _physics_process(delta: float) -> void:
 	if 横.visible == true:
 		if Input.is_action_just_pressed("鼠标左键"):
 			for 子节点 in 层选择.get_children():
-				子节点.reparent(方块源)
+				print(子节点)
+				子节点.reparent(mesh_parent)
 			横.position.y += 2
 			横.position.y = clamp(横.position.y,-2,2)
 		if Input.is_action_just_pressed("鼠标右键"):
@@ -79,14 +93,16 @@ func _physics_process(delta: float) -> void:
 	if 面.visible == true:
 		if Input.is_action_just_pressed("鼠标左键"):
 			for 子节点 in 层选择.get_children():
-				子节点.reparent(方块源)
-				面.position.z += 2
-				面.position.z = clamp(面.position.z,2,6)
+				print(子节点)
+				子节点.reparent(mesh_parent)
+			面.position.z += 2
+			面.position.z = clamp(面.position.z,2,6)
 		if Input.is_action_just_pressed("鼠标右键"):
 			for 子节点 in 层选择.get_children():
-				子节点.reparent(方块源)
-				面.position.z -= 2
-				面.position.z = clamp(面.position.z,2,6)
+				print(子节点)
+				子节点.reparent(mesh_parent)
+			面.position.z -= 2
+			面.position.z = clamp(面.position.z,2,6)
 	
 	#按下A D分别为顺时针和逆时针旋转
 	if Input.is_action_just_pressed("A"):
