@@ -18,9 +18,7 @@ func _process(delta: float) -> void:
 	pass
 "
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_rdhn8"]
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_kfgeg"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_lngn0"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_dnla8"]
 
@@ -49,16 +47,22 @@ glow_enabled = true
 [node name="Node3D" type="Node3D" unique_id=929692904]
 script = SubResource("GDScript_dnla8")
 
-[node name="AllMesh-ONE" type="Node3D" parent="." unique_id=27438295]
+[node name="AllMesh_ONE" type="Node3D" parent="." unique_id=545674537]
 visible = false
 
-[node name="1" parent="AllMesh-ONE" unique_id=174871546 instance=ExtResource("1_yuyxg")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, -2, -2)
+[node name="魔方" parent="AllMesh_ONE" unique_id=267908079 instance=ExtResource("1_yuyxg")]
+process_mode = 4
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="AllMesh-ONE/1" unique_id=1485489369]
-shape = SubResource("BoxShape3D_rdhn8")
+[node name="魔方2" parent="AllMesh_ONE" unique_id=1676180125 instance=ExtResource("1_yuyxg")]
+process_mode = 4
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 0)
+
+[node name="魔方3" parent="AllMesh_ONE" unique_id=852949766 instance=ExtResource("1_yuyxg")]
+process_mode = 4
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2)
 
 [node name="Mesh" type="Node3D" parent="." unique_id=1583168146]
+visible = false
 
 [node name="顺序" type="Node3D" parent="." unique_id=1684276470]
 
@@ -73,38 +77,34 @@ script = ExtResource("3_uwp1s")
 
 [node name="横" type="Area3D" parent="CharacterBody3D" unique_id=705405335]
 process_mode = 4
-visible = false
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D/横" unique_id=128267362]
-transform = Transform3D(5.4, 0, 0, 0, 1.8, 0, 0, 0, 5.4, 0, 0, 0)
-shape = SubResource("BoxShape3D_kfgeg")
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D/横" unique_id=357408101]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
+shape = SubResource("BoxShape3D_lngn0")
 
-[node name="框" parent="CharacterBody3D/横" unique_id=866077689 instance=ExtResource("4_uwp1s")]
-transform = Transform3D(-4.41485e-08, -1.01, 0, 1.01, -4.41485e-08, 0, 0, 0, 1.01, 0, -1, -3)
+[node name="框" parent="CharacterBody3D/横" unique_id=47084260 instance=ExtResource("4_uwp1s")]
+transform = Transform3D(1, 0, 0, 0, 0.333, 0, 0, 0, 0.333, -1, 0, -1)
 
 [node name="竖" type="Area3D" parent="CharacterBody3D" unique_id=319904408]
 process_mode = 4
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 0)
 visible = false
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D/竖" unique_id=1565809250]
-transform = Transform3D(1.8, 0, 0, 0, 5.4, 0, 0, 0, 5.4, 0, 0, 0)
+transform = Transform3D(2, 2.3528694e-22, -1.0388291e-29, -2.3528694e-22, 2, -8.830317e-08, 0, 8.830317e-08, 2, 0, 0, 0)
 shape = SubResource("BoxShape3D_dnla8")
 
 [node name="框" parent="CharacterBody3D/竖" unique_id=120709288 instance=ExtResource("4_uwp1s")]
-transform = Transform3D(1.01, 0, 0, 0, 1.01, 0, 0, 0, 1.01, -1, 0, -3)
+transform = Transform3D(1, 3.490866e-23, 0, -1.0483081e-22, 0.333, 0, 0, 0, 0.333, -1, 0, -1)
 
 [node name="面" type="Area3D" parent="CharacterBody3D" unique_id=1816383684]
 process_mode = 4
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2)
-visible = false
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D/面" unique_id=1376888990]
-transform = Transform3D(5.4, 0, 0, 0, 5.4, 0, 0, 0, 1.8, 0, 0, -4)
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
 shape = SubResource("BoxShape3D_uwp1s")
 
 [node name="框" parent="CharacterBody3D/面" unique_id=375519480 instance=ExtResource("4_uwp1s")]
-transform = Transform3D(-4.41485e-08, -1.01, 0, -4.41485e-08, 1.92979e-15, 1.01, -1.01, 4.41485e-08, -4.41485e-08, 0, -3, -3)
+transform = Transform3D(-4.371139e-08, -0.333, -1.45558925e-08, 0, -1.45558925e-08, 0.333, -1, 1.45558925e-08, 6.362583e-16, 0, -1, 1)
 
 [node name="Camera" type="Node3D" parent="CharacterBody3D" unique_id=1177638758]
 transform = Transform3D(1, 0, 2.98023e-08, 0, 1, 0, -2.98023e-08, 0, 1, -1.90735e-06, 9.53674e-07, -1.90735e-06)
@@ -113,9 +113,10 @@ transform = Transform3D(1, 0, 2.98023e-08, 0, 1, 0, -2.98023e-08, 0, 1, -1.90735
 transform = Transform3D(-1, -6.1722543e-09, -4.7361404e-09, -1.7763568e-15, 0.70710635, 0.70710665, -2.98023e-08, 0.70710665, -0.70710635, 0, 12, -12)
 
 [node name="环境" type="Node3D" parent="." unique_id=1234961631]
+metadata/_edit_lock_ = true
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="环境" unique_id=114124457]
-transform = Transform3D(80, 0, 0, 0, 80, 0, 0, 0, 80, 0, 0, 0)
+transform = Transform3D(72, 0, 0, 0, 72, 0, 0, 0, 72, 0, 0, 0)
 mesh = SubResource("SphereMesh_lngn0")
 skeleton = NodePath("../..")
 

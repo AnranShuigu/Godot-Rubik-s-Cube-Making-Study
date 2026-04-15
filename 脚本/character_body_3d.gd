@@ -1,3 +1,4 @@
+@tool
 extends CharacterBody3D
 
 @onready var 横 = $"横"
@@ -18,15 +19,28 @@ extends CharacterBody3D
 	$"../Mesh/25", $"../Mesh/26", $"../Mesh/27"
 	]
 @onready var mesh_parent = $"../Mesh"
+@onready var allmesh_one = $"../AllMesh_ONE/魔方"
 @onready var camera1 = $Camera
+@onready var 横_mesh = $"横"
+@onready var 竖_mesh = $"竖"
+@onready var 面_mesh = $"面"
 
 @export var 阶数 = 2
-var mesh_数量 = 4
 
+var mesh_数量 = 4
 var cameron : bool
 var 变量1 = true
 
+
 func _ready() -> void:
+	for x in range(阶数):
+		for y in range(阶数):
+			for z in range(阶数):
+				var copy = allmesh_one.duplicate(true)
+				copy.position = Vector3(x * 2, y * 2, z * 2)
+				mesh_parent.add_child(copy)
+	横_mesh.scale = Vector3(阶数,1,阶数)
+	横_mesh.position = Vector3(阶数*0.5,0,阶数*0.5)
 	
 	mesh_数量 = 阶数 * 阶数 * 阶数
 	
@@ -157,7 +171,6 @@ func _physics_process(delta: float) -> void:
 		else:
 			Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 
-var suo = false
 
 func _on_横_body_entered(body: Node3D) -> void:
 	if body is CharacterBody3D:
@@ -170,7 +183,6 @@ func _on_竖_body_entered(body: Node3D) -> void:
 		body.reparent(列选择)
 		print("列选择可检测区域横")
 	pass # Replace with function body.
-
 
 func _on_面_body_entered(body: Node3D) -> void:
 	if body is CharacterBody3D:
