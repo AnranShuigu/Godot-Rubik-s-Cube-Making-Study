@@ -118,14 +118,14 @@ func _physics_process(delta: float) -> void:
 
 	#按下A D分别为顺时针和逆时针旋转
 	if Input.is_action_just_pressed("A"):
-		层选择.rotation.y += PI/4
-		列选择.rotation.x += PI/4
-		面选择.rotation.z += PI/4
-		print("A")
-	if Input.is_action_just_pressed("D"):
 		层选择.rotation.y -= PI/4
 		列选择.rotation.x -= PI/4
 		面选择.rotation.z -= PI/4
+		print("A")
+	if Input.is_action_just_pressed("D"):
+		层选择.rotation.y += PI/4
+		列选择.rotation.x += PI/4
+		面选择.rotation.z += PI/4
 		print("D")
 	
 	#获取鼠标速度
@@ -144,7 +144,7 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed("鼠标滚轮下"):
 		print("down")
 		camera1.scale += Vector3(0.1,0.1,0.1)
-		camera1.scale = clamp(camera1.scale,Vector3(0.5,0.5,0.5),Vector3(3,3,3))
+		camera1.scale = clamp(camera1.scale,Vector3(0.5,0.5,0.5),Vector3(2,2,2))
 	#ESC隐藏鼠标
 	if Input.is_action_pressed("鼠标中键") or Input.is_action_pressed("ESC"):
 		if Input.mouse_mode == Input.MOUSE_MODE_VISIBLE:

@@ -262,12 +262,12 @@ transform = Transform3D(-4.41485e-08, -1.01, 0, -4.41485e-08, 1.92979e-15, 1.01,
 transform = Transform3D(1, 0, 2.98023e-08, 0, 1, 0, -2.98023e-08, 0, 1, -1.90735e-06, 9.53674e-07, -1.90735e-06)
 
 [node name="Camera3D" type="Camera3D" parent="CharacterBody3D/Camera" unique_id=369144574]
-transform = Transform3D(-1, 0, 0, -1.77636e-15, 0.866025, 0.5, -2.98023e-08, 0.5, -0.866025, 0, 12, -12)
+transform = Transform3D(-1, -6.1722543e-09, -4.7361404e-09, -1.7763568e-15, 0.70710635, 0.70710665, -2.98023e-08, 0.70710665, -0.70710635, 0, 12, -12)
 
 [node name="环境" type="Node3D" parent="." unique_id=1234961631]
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="环境" unique_id=114124457]
-transform = Transform3D(50, 0, 0, 0, 50, 0, 0, 0, 50, 0, 0, 0)
+transform = Transform3D(80, 0, 0, 0, 80, 0, 0, 0, 80, 0, 0, 0)
 mesh = SubResource("SphereMesh_lngn0")
 skeleton = NodePath("../..")
 
