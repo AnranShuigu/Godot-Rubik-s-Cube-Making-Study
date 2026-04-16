@@ -24,13 +24,15 @@ extends CharacterBody3D
 @onready var 横_mesh = $"横"
 @onready var 竖_mesh = $"竖"
 @onready var 面_mesh = $"面"
+@onready var world = $"../环境/MeshInstance3D"
 
 @export var 阶数 = 2
 
 var mesh_数量 = 4
 var cameron : bool
-var 变量1 = true
+var 变量1 := false
 
+@export var update := false
 
 func _ready() -> void:
 	for x in range(阶数):
@@ -39,25 +41,44 @@ func _ready() -> void:
 				var copy = allmesh_one.duplicate(true)
 				copy.position = Vector3(x * 2, y * 2, z * 2)
 				mesh_parent.add_child(copy)
-	横_mesh.scale = Vector3(阶数,1,阶数)
-	横_mesh.position = Vector3(阶数*0.5,0,阶数*0.5)
+				
+	横_mesh.scale = Vector3(阶数 , 1 , 阶数)
+	横_mesh.position = Vector3(阶数-1 , 0 , 阶数-1)
+	
+	竖_mesh.scale = Vector3(1 , 阶数 , 阶数)
+	竖_mesh.position = Vector3(0 , 阶数-1 , 阶数-1 )
+	
+	面_mesh.scale = Vector3(阶数 , 阶数 , 1)
+	面_mesh.position = Vector3(阶数-1 , 阶数-1 , 0)
 	
 	mesh_数量 = 阶数 * 阶数 * 阶数
 	
+	camera1.position = Vector3(阶数-1,阶数-1,阶数-1)
+	
+	world.scale *= 阶数
+	
+	#mesh_parent.scale = Vector3(2/阶数+2,2/阶数+2,2/阶数+2)
+	
 	for area in mesh:
 		add_to_group("可检测区域")
-	if Input.is_action_pressed("ESC"):
-		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
-		print("ESC")
 	cameron = false
 	pass
 
 
 func _input(event: InputEvent) -> void:
 	# 简单 安全 不报错
-	if Input.is_action_just_pressed("X"):
-		print("X 键：清空所有选择器里的魔方")
+	#if Input.is_action_just_pressed("X"):
+	#	print("X 键：清空所有选择器里的魔方")
 
+	if Input.is_action_just_pressed("ESC"):
+		变量1 = !变量1
+		if 变量1:
+			Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+			print("鼠标已隐藏")
+		else:
+			Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+			print("鼠标已显示")
+		
 		# 清空 层选择
 	if 层选择 != null:
 		for child in 层选择.get_children():
@@ -77,6 +98,8 @@ func _input(event: InputEvent) -> void:
 					child.reparent(mesh_parent)
 
 func _physics_process(delta: float) -> void:
+	if update:
+		update = false
 	Input.action_press("X")
 	#按下R F C键选择要旋转的面
 	if Input.is_action_just_pressed("R"):
@@ -92,10 +115,10 @@ func _physics_process(delta: float) -> void:
 	if 横.visible == true:
 		if Input.is_action_just_pressed("鼠标左键"):
 			横.position.y += 2
-			横.position.y = clamp(横.position.y,-2,2)
+			横.position.y = clamp(横.position.y,0,阶数*2-2)
 		if Input.is_action_just_pressed("鼠标右键"):
 			横.position.y -= 2
-			横.position.y = clamp(横.position.y,-2,2)
+			横.position.y = clamp(横.position.y,0,阶数*2-2)
 		
 	if Input.is_action_just_pressed("F"):
 		print("竖")
@@ -108,10 +131,10 @@ func _physics_process(delta: float) -> void:
 	if 竖.visible == true:
 		if Input.is_action_just_pressed("鼠标左键"):
 			竖.position.x += 2
-			竖.position.x = clamp(竖.position.x,-2,2)
+			竖.position.x = clamp(竖.position.x,0,阶数*2-2)
 		if Input.is_action_just_pressed("鼠标右键"):
 			竖.position.x -= 2
-			竖.position.x = clamp(竖.position.x,-2,2)
+			竖.position.x = clamp(竖.position.x,0,阶数*2-2)
 
 	if Input.is_action_just_pressed("C"):
 		print("面")
@@ -127,13 +150,13 @@ func _physics_process(delta: float) -> void:
 				print(子节点)
 				子节点.reparent(mesh_parent)
 			面.position.z += 2
-			面.position.z = clamp(面.position.z,2,6)
+			面.position.z = clamp(面.position.z,0,阶数*2-2)
 		if Input.is_action_just_pressed("鼠标右键"):
 			for 子节点 in 层选择.get_children():
 				print(子节点)
 				子节点.reparent(mesh_parent)
 			面.position.z -= 2
-			面.position.z = clamp(面.position.z,2,6)
+			面.position.z = clamp(面.position.z,0,阶数*2-2)
 
 	#按下A D分别为顺时针和逆时针旋转
 	if Input.is_action_just_pressed("A"):
@@ -163,13 +186,7 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed("鼠标滚轮下"):
 		print("down")
 		camera1.scale += Vector3(0.1,0.1,0.1)
-		camera1.scale = clamp(camera1.scale,Vector3(0.5,0.5,0.5),Vector3(2,2,2))
-	#ESC隐藏鼠标
-	if Input.is_action_pressed("鼠标中键") or Input.is_action_pressed("ESC"):
-		if Input.mouse_mode == Input.MOUSE_MODE_VISIBLE:
-			Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
-		else:
-			Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+		camera1.scale = clamp(camera1.scale,Vector3(0.5,0.5,0.5),world.scale*0.01)
 
 
 func _on_横_body_entered(body: Node3D) -> void:

@@ -4,6 +4,20 @@
 [ext_resource type="Script" uid="uid://bc5eccwogiojn" path="res://脚本/character_body_3d.gd" id="3_uwp1s"]
 [ext_resource type="PackedScene" uid="uid://ph5hlxts4yae" path="res://资源/框.glb" id="4_uwp1s"]
 
+[sub_resource type="GDScript" id="GDScript_dnla8"]
+script/source = "extends Node3D
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	pass
+"
+
 [sub_resource type="BoxShape3D" id="BoxShape3D_lngn0"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_dnla8"]
@@ -31,6 +45,7 @@ tonemap_mode = 2
 glow_enabled = true
 
 [node name="Node3D" type="Node3D" unique_id=929692904]
+script = SubResource("GDScript_dnla8")
 
 [node name="AllMesh_ONE" type="Node3D" parent="." unique_id=545674537]
 
