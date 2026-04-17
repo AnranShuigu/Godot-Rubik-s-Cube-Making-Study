@@ -10,6 +10,10 @@ extends CharacterBody3D
 @onready var 列选择 = $"../顺序/列选择"
 @onready var 面选择 = $"../顺序/面选择"
 
+@onready var 横_collsion = $"横/CollisionShape3D"
+@onready var 竖_collsion = $"竖/CollisionShape3D"
+@onready var 面_collsion = $"面/CollisionShape3D"
+
 @onready var mesh : Array[Area3D] = [
 	$"../Mesh/1",$"../Mesh/2",$"../Mesh/3", $"../Mesh/4", 
 	$"../Mesh/5", $"../Mesh/6", $"../Mesh/7", $"../Mesh/8",
@@ -61,6 +65,14 @@ func _ready() -> void:
 	
 	camera1.position = Vector3(阶数-1,阶数-1,阶数-1)
 	
+	层选择.position = Vector3(阶数-1 , 0 , 阶数-1)
+	列选择.position = Vector3(0 , 阶数-1 , 阶数-1)
+	面选择.position = Vector3(阶数-1 , 阶数-1 , 0)
+	
+	横_collsion.scale = Vector3(阶数*4,1.8,阶数*4)
+	竖_collsion.scale = Vector3(1.8,阶数*4,阶数*4)
+	面_collsion.scale = Vector3(阶数*4,阶数*4,1.8)
+	
 	#world.scale *= 阶数
 	
 	#mesh_parent.scale = Vector3(2/阶数+2,2/阶数+2,2/阶数+2)
@@ -75,8 +87,8 @@ func _ready() -> void:
 #region
 func _input(event: InputEvent) -> void:
 	# 简单 安全 不报错
-	#if Input.is_action_just_pressed("X"):
-	#	print("X 键：清空所有选择器里的魔方")
+	if Input.is_action_just_pressed("X"):
+		print("X 键：清空所有选择器里的魔方")
 	if Input.is_action_just_pressed("ESC"):
 		变量1 = !变量1
 		if 变量1:
@@ -108,7 +120,7 @@ func _input(event: InputEvent) -> void:
 func _physics_process(delta: float) -> void:
 	if update:
 		update = false
-	#Input.action_press("X")
+	Input.action_press("X")
 	#按下R F C键选择要旋转的面
 	if Input.is_action_just_pressed("R"):
 		print("层")
@@ -203,16 +215,19 @@ func _physics_process(delta: float) -> void:
 func _on_横_body_entered(body: Node3D) -> void:
 	if body is CharacterBody3D:
 		print("_on_横_body_entered")
+		body.reparent(层选择)
 	pass # Replace with function body.
 
 func _on_竖_body_entered(body: Node3D) -> void:
 	if body is CharacterBody3D:
 		print("_on_竖_body_entered")
+		body.reparent(列选择)
 	pass # Replace with function body.
 
 func _on_面_body_entered(body: Node3D) -> void:
 	if body is CharacterBody3D:
 		print("_on_面_body_entered")
+		body.reparent(面选择)
 	pass # Replace with function body.
 	
 #endregion

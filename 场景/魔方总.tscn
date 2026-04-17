@@ -4,13 +4,13 @@
 [ext_resource type="Script" uid="uid://bc5eccwogiojn" path="res://脚本/character_body_3d.gd" id="3_uwp1s"]
 [ext_resource type="PackedScene" uid="uid://ph5hlxts4yae" path="res://资源/框.glb" id="4_uwp1s"]
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_xl75a"]
+
 [sub_resource type="BoxShape3D" id="BoxShape3D_lngn0"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_dnla8"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_uwp1s"]
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_xl75a"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_uwp1s"]
 albedo_color = Color(0, 1, 1, 1)
@@ -23,48 +23,6 @@ flip_faces = true
 background_energy_multiplier = 3.0
 
 [node name="Node3D" type="Node3D"]
-
-[node name="CharacterBody3D" type="CharacterBody3D" parent="."]
-script = ExtResource("3_uwp1s")
-
-[node name="横" type="Area3D" parent="CharacterBody3D"]
-transform = Transform3D(3, 0, 0, 0, 1, 0, 0, 0, 3, 2, 0, 2)
-visible = false
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D/横"]
-transform = Transform3D(1.8, 0, 0, 0, 1.8, 0, 0, 0, 1.8, 0, 0, 0)
-shape = SubResource("BoxShape3D_lngn0")
-
-[node name="框" parent="CharacterBody3D/横" instance=ExtResource("4_uwp1s")]
-transform = Transform3D(1, 0, 0, 0, 0.333, 0, 0, 0, 0.333, -1, 0, -1)
-
-[node name="竖" type="Area3D" parent="CharacterBody3D"]
-transform = Transform3D(1, 0, 0, 0, 3, 0, 0, 0, 3, 0, 2, 2)
-visible = false
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D/竖"]
-transform = Transform3D(1.8, 2.1175824e-22, -9.3494615e-30, -2.1175824e-22, 1.8, -7.947285e-08, 0, 7.947285e-08, 1.8, 0, 0, 0)
-shape = SubResource("BoxShape3D_dnla8")
-
-[node name="框" parent="CharacterBody3D/竖" instance=ExtResource("4_uwp1s")]
-transform = Transform3D(1, 3.490866e-23, 0, -1.0483081e-22, 0.333, 0, 0, 0, 0.333, -1, 0, -1)
-
-[node name="面" type="Area3D" parent="CharacterBody3D"]
-transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 1, 2, 2, 0)
-visible = false
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D/面"]
-transform = Transform3D(1.8, 0, 0, 0, 1.8, 0, 0, 0, 1.8, 0, 0, 0)
-shape = SubResource("BoxShape3D_uwp1s")
-
-[node name="框" parent="CharacterBody3D/面" instance=ExtResource("4_uwp1s")]
-transform = Transform3D(-4.371139e-08, -0.333, -1.45558925e-08, 0, -1.45558925e-08, 0.333, -1, 1.45558925e-08, 6.362583e-16, 0, -1, 1)
-
-[node name="Camera" type="Node3D" parent="CharacterBody3D"]
-transform = Transform3D(-0.71782196, -0.0452862, -0.6947523, 0, 0.99788225, -0.06504519, 0.6962267, -0.04669087, -0.7163018, 2, 2, 2)
-
-[node name="Camera3D" type="Camera3D" parent="CharacterBody3D/Camera"]
-transform = Transform3D(-1, -6.1722543e-09, -4.7361404e-09, -1.7763568e-15, 0.70710635, 0.70710665, -2.98023e-08, 0.70710665, -0.70710635, 0, 12, -12)
 
 [node name="AllMesh_ONE" type="Node3D" parent="."]
 visible = false
@@ -86,6 +44,52 @@ shape = SubResource("BoxShape3D_xl75a")
 [node name="列选择" type="Node3D" parent="顺序"]
 
 [node name="面选择" type="Node3D" parent="顺序"]
+
+[node name="CharacterBody3D" type="CharacterBody3D" parent="."]
+script = ExtResource("3_uwp1s")
+"阶数" = 11
+
+[node name="横" type="Area3D" parent="CharacterBody3D"]
+process_mode = 4
+transform = Transform3D(2, 0, 0, 0, 1, 0, 0, 0, 2, 1, 0, 1)
+visible = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D/横"]
+transform = Transform3D(1.8, 0, 0, 0, 1.8, 0, 0, 0, 1.8, 0, 0, 0)
+shape = SubResource("BoxShape3D_lngn0")
+
+[node name="框" parent="CharacterBody3D/横" instance=ExtResource("4_uwp1s")]
+transform = Transform3D(1, 0, 0, 0, 0.333, 0, 0, 0, 0.333, -1, 0, -1)
+
+[node name="竖" type="Area3D" parent="CharacterBody3D"]
+process_mode = 4
+transform = Transform3D(1, 0, 0, 0, 2, 0, 0, 0, 2, 0, 1, 1)
+visible = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D/竖"]
+transform = Transform3D(1.8, 2.1175824e-22, -9.3494615e-30, -2.1175824e-22, 1.8, -7.947285e-08, 0, 7.947285e-08, 1.8, 0, 0, 0)
+shape = SubResource("BoxShape3D_dnla8")
+
+[node name="框" parent="CharacterBody3D/竖" instance=ExtResource("4_uwp1s")]
+transform = Transform3D(1, 3.490866e-23, 0, -1.0483081e-22, 0.333, 0, 0, 0, 0.333, -1, 0, -1)
+
+[node name="面" type="Area3D" parent="CharacterBody3D"]
+process_mode = 4
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 1, 1, 1, 0)
+visible = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D/面"]
+transform = Transform3D(1.8, 0, 0, 0, 1.8, 0, 0, 0, 1.8, 0, 0, 0)
+shape = SubResource("BoxShape3D_uwp1s")
+
+[node name="框" parent="CharacterBody3D/面" instance=ExtResource("4_uwp1s")]
+transform = Transform3D(-4.371139e-08, -0.333, -1.45558925e-08, 0, -1.45558925e-08, 0.333, -1, 1.45558925e-08, 6.362583e-16, 0, -1, 1)
+
+[node name="Camera" type="Node3D" parent="CharacterBody3D"]
+transform = Transform3D(-0.72112375, -0.03684791, -0.6918257, 0, 0.9985845, -0.053186458, 0.6928063, -0.038354017, -0.720103, 1, 1, 1)
+
+[node name="Camera3D" type="Camera3D" parent="CharacterBody3D/Camera"]
+transform = Transform3D(-1, -6.1722543e-09, -4.7361404e-09, -1.7763568e-15, 0.70710635, 0.70710665, -2.98023e-08, 0.70710665, -0.70710635, 0, 12, -12)
 
 [node name="环境" type="Node3D" parent="."]
 metadata/_edit_lock_ = true
