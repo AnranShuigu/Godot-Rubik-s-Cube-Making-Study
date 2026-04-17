@@ -1,6 +1,7 @@
 @tool
 extends CharacterBody3D
-
+#变量
+#region
 @onready var 横 = $"横"
 @onready var 竖 = $"竖"
 @onready var 面 = $"面"
@@ -33,13 +34,18 @@ var cameron : bool
 var 变量1 := false
 
 @export var update := false
+#endregion
 
+#初始化函数
+#region
 func _ready() -> void:
 	for x in range(阶数):
 		for y in range(阶数):
 			for z in range(阶数):
 				var copy = allmesh_one.duplicate(true)
 				copy.position = Vector3(x * 2, y * 2, z * 2)
+				copy.visible = true
+				copy.set_process_mode(Node.PROCESS_MODE_INHERIT)
 				mesh_parent.add_child(copy)
 				
 	横_mesh.scale = Vector3(阶数 , 1 , 阶数)
@@ -55,7 +61,7 @@ func _ready() -> void:
 	
 	camera1.position = Vector3(阶数-1,阶数-1,阶数-1)
 	
-	world.scale *= 阶数
+	#world.scale *= 阶数
 	
 	#mesh_parent.scale = Vector3(2/阶数+2,2/阶数+2,2/阶数+2)
 	
@@ -63,13 +69,14 @@ func _ready() -> void:
 		add_to_group("可检测区域")
 	cameron = false
 	pass
+#endregion
 
-
+#控制部分
+#region
 func _input(event: InputEvent) -> void:
 	# 简单 安全 不报错
 	#if Input.is_action_just_pressed("X"):
 	#	print("X 键：清空所有选择器里的魔方")
-
 	if Input.is_action_just_pressed("ESC"):
 		变量1 = !变量1
 		if 变量1:
@@ -97,10 +104,11 @@ func _input(event: InputEvent) -> void:
 				if child is CharacterBody3D and child != self:
 					child.reparent(mesh_parent)
 
+
 func _physics_process(delta: float) -> void:
 	if update:
 		update = false
-	Input.action_press("X")
+	#Input.action_press("X")
 	#按下R F C键选择要旋转的面
 	if Input.is_action_just_pressed("R"):
 		print("层")
@@ -186,24 +194,25 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed("鼠标滚轮下"):
 		print("down")
 		camera1.scale += Vector3(0.1,0.1,0.1)
-		camera1.scale = clamp(camera1.scale,Vector3(0.5,0.5,0.5),world.scale*0.01)
+		camera1.scale = clamp(camera1.scale,Vector3(0.5,0.5,0.5),world.scale*0.001)
+#endregion
 
+#area检测部分
 
+#region
 func _on_横_body_entered(body: Node3D) -> void:
 	if body is CharacterBody3D:
-		body.reparent(层选择)
-		print("层选择可检测区域横")
+		print("_on_横_body_entered")
 	pass # Replace with function body.
 
 func _on_竖_body_entered(body: Node3D) -> void:
 	if body is CharacterBody3D:
-		body.reparent(列选择)
-		print("列选择可检测区域横")
+		print("_on_竖_body_entered")
 	pass # Replace with function body.
 
 func _on_面_body_entered(body: Node3D) -> void:
 	if body is CharacterBody3D:
-		body.reparent(面选择)
-		print("面选择可检测区域横")
+		print("_on_面_body_entered")
 	pass # Replace with function body.
 	
+#endregion

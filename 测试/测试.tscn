@@ -1,0 +1,57 @@
+[gd_scene load_steps=10 format=3 uid="uid://n8dwwtatiinh"]
+
+[ext_resource type="Script" uid="uid://cliusmp2qjxo1" path="res://测试/测试.gd" id="1_m304y"]
+[ext_resource type="Texture2D" uid="uid://c7k7se7ova2h3" path="res://icon.svg" id="2_frtyx"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_tum6y"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_m304y"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_frtyx"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_ca6xb"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ca6xb"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lbabw"]
+albedo_texture = ExtResource("2_frtyx")
+
+[sub_resource type="BoxMesh" id="BoxMesh_vc57n"]
+
+[node name="Node3D" type="Node3D"]
+
+[node name="Area3D" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 1, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("SphereShape3D_tum6y")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Area3D"]
+mesh = SubResource("SphereMesh_m304y")
+
+[node name="CharacterBody3D" type="CharacterBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 3, 0)
+script = ExtResource("1_m304y")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D"]
+shape = SubResource("CapsuleShape3D_frtyx")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="CharacterBody3D"]
+mesh = SubResource("CapsuleMesh_ca6xb")
+
+[node name="Camera3D" type="Camera3D" parent="CharacterBody3D"]
+transform = Transform3D(-4.222196e-08, -0.25881904, 0.9659258, -1.131334e-08, 0.9659258, 0.25881904, -1, 0, -4.371139e-08, 0, 1, 0)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(100, 0, 0, 0, 0.2, 0, 0, 0, 100, 0, 0, 0)
+shape = SubResource("BoxShape3D_ca6xb")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D"]
+transform = Transform3D(100, 0, 0, 0, 0.2, 0, 0, 0, 100, 2, 0, 0)
+material_override = SubResource("StandardMaterial3D_lbabw")
+mesh = SubResource("BoxMesh_vc57n")
+
+[connection signal="body_entered" from="Area3D" to="CharacterBody3D" method="_on_area_3d_body_entered"]
