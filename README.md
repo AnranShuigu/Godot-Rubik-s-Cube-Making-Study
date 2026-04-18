@@ -19,12 +19,12 @@
 - 程序正常退出功能
 
 ## 文件结构
-/
-├── scenes/ # 场景文件
-├── scripts/ # GDScript 代码脚本
-├── assets/ # 模型、材质、贴图资源
-├── README.md # 项目说明文档
-└── .git # Git 仓库配置
+-/
+-├── scenes/ # 场景文件
+-├── scripts/ # GDScript 代码脚本
+-├── assets/ # 模型、材质、贴图资源
+-├── README.md # 项目说明文档
+-└── .git # Git 仓库配置
 
 ## 后续开发计划
 - 魔方单层旋转动画实现
