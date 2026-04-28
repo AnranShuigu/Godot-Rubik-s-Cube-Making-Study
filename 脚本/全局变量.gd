@@ -1,6 +1,6 @@
 extends Node
 
-@export var 阶数 = 2
+@export var 阶数 = 10
 
 # 加载你的鼠标图片
 var cursor_texture = load("res://cursor.png")

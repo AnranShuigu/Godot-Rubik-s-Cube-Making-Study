@@ -15,12 +15,16 @@ compatibility/default_parent_skeleton_in_mesh_instance_3d=true
 [application]
 
 config/name="魔方"
-run/main_scene="uid://h6rb47k8ox0c"
-config/features=PackedStringArray("4.6", "Forward Plus")
+run/main_scene="uid://dglnmfa30hkq3"
+config/features=PackedStringArray("4.5", "Forward Plus")
 
 [autoload]
 
 "全局变量"="*res://脚本/全局变量.gd"
+
+[dotnet]
+
+project/assembly_name="魔方"
 
 [input]
 

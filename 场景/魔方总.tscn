@@ -50,7 +50,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 2, 0)
 
 [node name="CharacterBody3D" type="CharacterBody3D" parent="."]
 script = ExtResource("3_uwp1s")
-"阶数" = 3
 
 [node name="横" type="Area3D" parent="CharacterBody3D"]
 process_mode = 4
