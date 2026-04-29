@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://dglnmfa30hkq3"]
+[gd_scene format=3 uid="uid://dglnmfa30hkq3"]
 
 [ext_resource type="PackedScene" uid="uid://dpkxc4525ejfb" path="res://资源/魔方.glb" id="1_yuyxg"]
 [ext_resource type="Script" uid="uid://bc5eccwogiojn" path="res://脚本/character_body_3d.gd" id="3_uwp1s"]
@@ -22,87 +22,87 @@ flip_faces = true
 [sub_resource type="Environment" id="Environment_dnla8"]
 background_energy_multiplier = 3.0
 
-[node name="Node3D" type="Node3D"]
+[node name="Node3D" type="Node3D" unique_id=1758238367]
 
-[node name="AllMesh_ONE" type="Node3D" parent="."]
+[node name="AllMesh_ONE" type="Node3D" parent="." unique_id=1673700027]
 visible = false
 
-[node name="魔方" parent="AllMesh_ONE" instance=ExtResource("1_yuyxg")]
+[node name="魔方" parent="AllMesh_ONE" unique_id=2035655794 instance=ExtResource("1_yuyxg")]
 process_mode = 4
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="AllMesh_ONE/魔方"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="AllMesh_ONE/魔方" unique_id=1517546920]
 process_mode = 4
 transform = Transform3D(1.8, 0, 0, 0, 1.8, 0, 0, 0, 1.8, 0, 0, 0)
 shape = SubResource("BoxShape3D_xl75a")
 
-[node name="Mesh" type="Node3D" parent="."]
+[node name="Mesh" type="Node3D" parent="." unique_id=35508791]
 
-[node name="顺序" type="Node3D" parent="."]
+[node name="顺序" type="Node3D" parent="." unique_id=1254329330]
 
-[node name="层选择" type="Node3D" parent="顺序"]
+[node name="层选择" type="Node3D" parent="顺序" unique_id=663396528]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 2)
 
-[node name="列选择" type="Node3D" parent="顺序"]
+[node name="列选择" type="Node3D" parent="顺序" unique_id=1133120398]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 2)
 
-[node name="面选择" type="Node3D" parent="顺序"]
+[node name="面选择" type="Node3D" parent="顺序" unique_id=570660419]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 2, 0)
 
-[node name="CharacterBody3D" type="CharacterBody3D" parent="."]
+[node name="CharacterBody3D" type="CharacterBody3D" parent="." unique_id=1638234832]
 script = ExtResource("3_uwp1s")
 
-[node name="横" type="Area3D" parent="CharacterBody3D"]
+[node name="横" type="Area3D" parent="CharacterBody3D" unique_id=1941520188]
 process_mode = 4
 transform = Transform3D(3, 0, 0, 0, 1, 0, 0, 0, 3, 2, 0, 2)
 visible = false
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D/横"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D/横" unique_id=1379879721]
 transform = Transform3D(12, 0, 0, 0, 1.8, 0, 0, 0, 12, 0, 0, 0)
 shape = SubResource("BoxShape3D_lngn0")
 
-[node name="框" parent="CharacterBody3D/横" instance=ExtResource("4_uwp1s")]
+[node name="框" parent="CharacterBody3D/横" unique_id=2032930369 instance=ExtResource("4_uwp1s")]
 transform = Transform3D(1, 0, 0, 0, 0.333, 0, 0, 0, 0.333, -1, 0, -1)
 
-[node name="竖" type="Area3D" parent="CharacterBody3D"]
+[node name="竖" type="Area3D" parent="CharacterBody3D" unique_id=435628981]
 process_mode = 4
 transform = Transform3D(1, 0, 0, 0, 3, 0, 0, 0, 3, 0, 2, 2)
 visible = false
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D/竖"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D/竖" unique_id=1102215838]
 transform = Transform3D(1.8, 1.4117216e-21, -6.232974e-29, -2.1175824e-22, 12, -5.2981903e-07, -2.0312541e-36, 5.2981903e-07, 12, 0, 0, 0)
 shape = SubResource("BoxShape3D_dnla8")
 
-[node name="框" parent="CharacterBody3D/竖" instance=ExtResource("4_uwp1s")]
+[node name="框" parent="CharacterBody3D/竖" unique_id=593820236 instance=ExtResource("4_uwp1s")]
 transform = Transform3D(1, 3.490866e-23, 0, -1.0483081e-22, 0.333, 0, 0, 0, 0.333, -1, 0, -1)
 
-[node name="面" type="Area3D" parent="CharacterBody3D"]
+[node name="面" type="Area3D" parent="CharacterBody3D" unique_id=1177166382]
 process_mode = 4
 transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 1, 2, 2, 0)
 visible = false
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D/面"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D/面" unique_id=771160131]
 transform = Transform3D(12, 0, 0, 0, 12, 0, 0, 0, 1.8, 0, 0, 0)
 shape = SubResource("BoxShape3D_uwp1s")
 
-[node name="框" parent="CharacterBody3D/面" instance=ExtResource("4_uwp1s")]
+[node name="框" parent="CharacterBody3D/面" unique_id=1305775099 instance=ExtResource("4_uwp1s")]
 transform = Transform3D(-4.371139e-08, -0.333, -1.45558925e-08, 0, -1.45558925e-08, 0.333, -1, 1.45558925e-08, 6.362583e-16, 0, -1, 1)
 
-[node name="Camera" type="Node3D" parent="CharacterBody3D"]
+[node name="Camera" type="Node3D" parent="CharacterBody3D" unique_id=720638215]
 transform = Transform3D(0.390165, -0.017615477, 0.92057633, 0, 0.9998171, 0.019131761, -0.92074496, -0.0074645453, 0.39009356, 2, 2, 2)
 
-[node name="Camera3D" type="Camera3D" parent="CharacterBody3D/Camera"]
+[node name="Camera3D" type="Camera3D" parent="CharacterBody3D/Camera" unique_id=428916657]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 18)
 
-[node name="环境" type="Node3D" parent="."]
+[node name="环境" type="Node3D" parent="." unique_id=440506758]
 metadata/_edit_lock_ = true
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="环境"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="环境" unique_id=308844026]
 transform = Transform3D(2000, 0, 0, 0, 2000, 0, 0, 0, 2000, 1, 0, 0)
 mesh = SubResource("SphereMesh_lngn0")
 skeleton = NodePath("../..")
 metadata/_edit_lock_ = true
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="环境"]
+[node name="WorldEnvironment" type="WorldEnvironment" parent="环境" unique_id=1842994049]
 environment = SubResource("Environment_dnla8")
 
 [connection signal="body_entered" from="CharacterBody3D/横" to="CharacterBody3D" method="_on_横_body_entered"]

@@ -1,4 +1,3 @@
-@tool
 extends CharacterBody3D
 
 #变量
@@ -27,7 +26,6 @@ extends CharacterBody3D
 @export var update := false
 
 var mesh_数量 := 4
-var cameron : bool
 var 变量1 := false
 
 var update_横 := true
@@ -45,11 +43,14 @@ func _ready() -> void:
 	for x in range(全局变量.阶数):
 		for y in range(全局变量.阶数):
 			for z in range(全局变量.阶数):
-				var copy = allmesh_one.duplicate(true)
-				copy.position = Vector3(x * 2, y * 2, z * 2)
-				copy.visible = true
-				copy.set_process_mode(Node.PROCESS_MODE_INHERIT)
-				mesh_parent.add_child(copy)
+				if (x == 0 or x == 全局变量.阶数-1 or
+				y == 0 or y == 全局变量.阶数-1 or
+				z == 0 or z == 全局变量.阶数-1):
+					var copy = allmesh_one.duplicate(true)
+					copy.position = Vector3(x * 2, y * 2, z * 2)
+					copy.visible = true
+					copy.set_process_mode(Node.PROCESS_MODE_INHERIT)
+					mesh_parent.add_child(copy)
 				
 	横_mesh.scale = Vector3(全局变量.阶数 , 1 , 全局变量.阶数)
 	横_mesh.position = Vector3(全局变量.阶数-1 , 0 , 全局变量.阶数-1)
@@ -78,11 +79,33 @@ func _ready() -> void:
 
 #控制部分
 #region
+func 清空层列面选择():
+	# 清空 层选择
+	if 层选择 != null:
+		for child in 层选择.get_children():
+			if child is CharacterBody3D and child != self:
+				child.reparent(mesh_parent)
+	# 清空 列选择
+	if 列选择 != null:
+		for child in 列选择.get_children():
+			if child is CharacterBody3D and child != self:
+				child.reparent(mesh_parent)
+	# 清空 面选择
+	if 面选择 != null:
+		for child in 面选择.get_children():
+			if child is CharacterBody3D and child != self:
+				child.reparent(mesh_parent)
+	pass
+
+
 func _旋转选择函数():
 	#按下R F C键选择要旋转的面
 #===========================================================================================
 #===========================================================================================
 	if Input.is_action_just_pressed("R"):
+		清空层列面选择()
+		
+		await get_tree().create_timer(0.1).timeout
 		if update_横 != update_横:
 			update_横 = !update_横
 			print("update_横")
@@ -99,45 +122,28 @@ func _旋转选择函数():
 	if 横.visible == true:
 		if Input.is_action_just_pressed("鼠标左键"):
 			update_横 = false
-			# 清空 层选择
-			if 层选择 != null:
-				for child in 层选择.get_children():
-					if child is CharacterBody3D and child != self:
-						child.reparent(mesh_parent)
-			# 清空 列选择
-			if 列选择 != null:
-				for child in 列选择.get_children():
-					if child is CharacterBody3D and child != self:
-						child.reparent(mesh_parent)
-			# 清空 面选择
-			if 面选择 != null:
-				for child in 面选择.get_children():
-					if child is CharacterBody3D and child != self:
-						child.reparent(mesh_parent)
+			清空层列面选择()
+			
+			await get_tree().create_timer(0.1).timeout
 			横.position.y += 2
 			横.position.y = clamp(横.position.y,0,全局变量.阶数*2-2)
 			update_横 = true
+			
 		if Input.is_action_just_pressed("鼠标右键"):
 			update_横 = false
-			# 清空 层选择
-			if 层选择 != null:
-				for child in 层选择.get_children():
-					if child is CharacterBody3D and child != self:
-						child.reparent(mesh_parent)
-			# 清空 列选择
-			if 列选择 != null:
-				for child in 列选择.get_children():
-					if child is CharacterBody3D and child != self:
-						child.reparent(mesh_parent)
-			# 清空 面选择
-			if 面选择 != null:
-				for child in 面选择.get_children():
-					if child is CharacterBody3D and child != self:
-						child.reparent(mesh_parent)
+			清空层列面选择()
+			
+			await get_tree().create_timer(0.1).timeout
+			横.position.y -= 2
+			横.position.y = clamp(横.position.y,0,全局变量.阶数*2-2)
+			update_横 = true
 #===========================================================================================
 #===========================================================================================
 
 	if Input.is_action_just_pressed("F"):
+		清空层列面选择()
+		
+		await get_tree().create_timer(0.1).timeout
 		if update_竖 != update_竖:
 			update_竖 = !update_竖
 		print("竖")
@@ -151,39 +157,17 @@ func _旋转选择函数():
 	if 竖.visible == true:
 		if Input.is_action_just_pressed("鼠标左键"):
 			update_竖 = false
-			if 层选择 != null:
-				for child in 层选择.get_children():
-					if child is CharacterBody3D and child != self:
-						child.reparent(mesh_parent)
-			# 清空 列选择
-			if 列选择 != null:
-				for child in 列选择.get_children():
-					if child is CharacterBody3D and child != self:
-						child.reparent(mesh_parent)
-			# 清空 面选择
-			if 面选择 != null:
-				for child in 面选择.get_children():
-					if child is CharacterBody3D and child != self:
-						child.reparent(mesh_parent)
+			清空层列面选择()
+			
+			await get_tree().create_timer(0.1).timeout
 			竖.position.x += 2
 			竖.position.x = clamp(竖.position.x,0,全局变量.阶数*2-2)
 			update_竖 = true
 		if Input.is_action_just_pressed("鼠标右键"):
 			update_竖 = false
-			if 层选择 != null:
-				for child in 层选择.get_children():
-					if child is CharacterBody3D and child != self:
-						child.reparent(mesh_parent)
-			# 清空 列选择
-			if 列选择 != null:
-				for child in 列选择.get_children():
-					if child is CharacterBody3D and child != self:
-						child.reparent(mesh_parent)
-			# 清空 面选择
-			if 面选择 != null:
-				for child in 面选择.get_children():
-					if child is CharacterBody3D and child != self:
-						child.reparent(mesh_parent)
+			清空层列面选择()
+			
+			await get_tree().create_timer(0.1).timeout
 			竖.position.x -= 2
 			竖.position.x = clamp(竖.position.x,0,全局变量.阶数*2-2)
 			update_竖 = true
@@ -191,6 +175,10 @@ func _旋转选择函数():
 #===========================================================================================
 
 	if Input.is_action_just_pressed("C"):
+		# 清空 层选择
+		清空层列面选择()
+		
+		await get_tree().create_timer(0.1).timeout
 		if update_面 != update_面:
 			update_面 = !update_面
 		print("面")
@@ -204,71 +192,52 @@ func _旋转选择函数():
 	if 面.visible == true:
 		if Input.is_action_just_pressed("鼠标左键"):
 			update_面 = false
-			if 层选择 != null:
-				for child in 层选择.get_children():
-					if child is CharacterBody3D and child != self:
-						child.reparent(mesh_parent)
-			# 清空 列选择
-			if 列选择 != null:
-				for child in 列选择.get_children():
-					if child is CharacterBody3D and child != self:
-						child.reparent(mesh_parent)
-			# 清空 面选择
-			if 面选择 != null:
-				for child in 面选择.get_children():
-					if child is CharacterBody3D and child != self:
-						child.reparent(mesh_parent)
+			清空层列面选择()
+			
+			await get_tree().create_timer(0.1).timeout
 			面.position.z += 2
 			面.position.z = clamp(面.position.z,0,全局变量.阶数*2-2)
 			update_面 = true
 		if Input.is_action_just_pressed("鼠标右键"):
-			if 层选择 != null:
-				for child in 层选择.get_children():
-					if child is CharacterBody3D and child != self:
-						child.reparent(mesh_parent)
-			# 清空 列选择
-			if 列选择 != null:
-				for child in 列选择.get_children():
-					if child is CharacterBody3D and child != self:
-						child.reparent(mesh_parent)
-			# 清空 面选择
-			if 面选择 != null:
-				for child in 面选择.get_children():
-					if child is CharacterBody3D and child != self:
-						child.reparent(mesh_parent)
+			清空层列面选择()
+			
+			await get_tree().create_timer(0.1).timeout
 			面.position.z -= 2
 			面.position.z = clamp(面.position.z,0,全局变量.阶数*2-2)
 			update_面 = true
 #===========================================================================================
 #===========================================================================================
+	pass
+
 
 func _旋转函数():
 	if Input.is_action_just_pressed("A"):
-		层选择.rotation.y -= PI/4
-	#	横.rotation.y -= PI/4
-		列选择.rotation.x -= PI/4
-	#	竖.rotation.x -= PI/4
-		面选择.rotation.z -= PI/4
-		#面.rotation.z -= PI/4
+		await get_tree().create_timer(0.2).timeout
+		create_tween().tween_property(层选择,"rotation:y",层选择.rotation.y-PI/2,0.15)
+		#层选择.rotation.y -= PI/4
+		create_tween().tween_property(列选择,"rotation:x",列选择.rotation.x-PI/2,0.15)
+		#列选择.rotation.x -= PI/4
+		create_tween().tween_property(面选择,"rotation:z",面选择.rotation.z-PI/2,0.15)
+		#面选择.rotation.z -= PI/4
 		print("A")
 	if Input.is_action_just_pressed("D"):
-		层选择.rotation.y += PI/4
-	#	横.rotation.y += PI/4
-		列选择.rotation.x += PI/4
-	#	竖.rotation.x += PI/4
-		面选择.rotation.z += PI/4
-	#	面.rotation.z += PI/4
+		await get_tree().create_timer(0.2).timeout
+		create_tween().tween_property(层选择,"rotation:y",层选择.rotation.y+PI/2,0.15)
+		#层选择.rotation.y += PI/4
+		create_tween().tween_property(列选择,"rotation:x",列选择.rotation.x+PI/2,0.15)
+		#列选择.rotation.x += PI/4
+		create_tween().tween_property(面选择,"rotation:z",面选择.rotation.z+PI/2,0.15)
+		#面选择.rotation.z += PI/4
 		print("D")
+
 
 func 鼠标操作():
 		#获取鼠标速度
 	var camer = Input.get_last_mouse_velocity()
-	#print(camer)
 	#如果鼠标模式为隐藏，则旋转xy
 	if Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
 		camera1.rotation.y -= camer.x * 0.01 * 0.01 * 0.1
 		camera1.rotation.x -= camer.y * 0.01 * 0.01 * 0.1
-		#camera1.rotation.x = clamp(camera1.rotation.x,-PI/2 , PI/2-PI/3)
 	#鼠标滚轮缩放
 	if Input.is_action_just_pressed("鼠标滚轮上"):
 		print("up")
@@ -279,10 +248,14 @@ func 鼠标操作():
 		camera1.scale += Vector3(0.1,0.1,0.1)
 		camera1.scale = clamp(camera1.scale,Vector3(0.5,0.5,0.5),world.scale*0.001)
 
+
 func _input(event: InputEvent) -> void:
 	# 简单 安全 不报错
 	if Input.is_action_just_pressed("X"):
 		print("X 键：清空所有选择器里的魔方")
+		层选择.rotation = Vector3(0,0,0)
+		列选择.rotation = Vector3(0,0,0)
+		面选择.rotation = Vector3(0,0,0)
 	if Input.is_action_just_pressed("鼠标中建"):
 		变量1 = !变量1
 		if 变量1:
@@ -291,7 +264,6 @@ func _input(event: InputEvent) -> void:
 		else:
 			Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 			print("鼠标已显示")
-		
 
 
 func _physics_process(delta: float) -> void:
