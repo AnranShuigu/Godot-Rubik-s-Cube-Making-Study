@@ -1,0 +1,118 @@
+[gd_scene format=3 uid="uid://b005qijymo5ya"]
+
+[ext_resource type="Script" uid="uid://lo6sqp4v4sr1" path="res://脚本/选择界面.gd" id="1_0uhyi"]
+[ext_resource type="Texture2D" uid="uid://c47lhrktosddr" path="res://资源/未命名.png" id="1_i4hih"]
+
+[node name="选择界面" type="Control" unique_id=371647080]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -589.0
+offset_top = -260.0
+offset_right = -589.0
+offset_bottom = -260.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_0uhyi")
+
+[node name="未命名" type="Sprite2D" parent="." unique_id=1933074133]
+position = Vector2(546, 309)
+texture = ExtResource("1_i4hih")
+
+[node name="Label" type="Label" parent="." unique_id=865743902]
+layout_mode = 0
+offset_left = 129.0
+offset_top = 86.0
+offset_right = 209.0
+offset_bottom = 135.0
+text = "魔方阶数：
+"
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1209924179]
+
+[node name="1" type="Button" parent="CanvasLayer" unique_id=747543099]
+offset_left = 240.0
+offset_top = 245.0
+offset_right = 274.0
+offset_bottom = 276.0
+text = "二阶"
+
+[node name="2" type="Button" parent="CanvasLayer" unique_id=1454068976]
+offset_left = 457.0
+offset_top = 232.0
+offset_right = 491.0
+offset_bottom = 263.0
+text = "三阶"
+
+[node name="3" type="Button" parent="CanvasLayer" unique_id=1996611578]
+offset_left = 522.0
+offset_top = 99.0
+offset_right = 562.0
+offset_bottom = 130.0
+text = "四阶"
+
+[node name="4" type="Button" parent="CanvasLayer" unique_id=1549318410]
+offset_left = 327.0
+offset_top = 289.0
+offset_right = 367.0
+offset_bottom = 320.0
+text = "五阶"
+
+[node name="5" type="Button" parent="CanvasLayer" unique_id=1281011438]
+offset_left = 465.0
+offset_top = 312.0
+offset_right = 505.0
+offset_bottom = 343.0
+text = "六阶"
+
+[node name="6" type="Button" parent="CanvasLayer" unique_id=1718445763]
+offset_left = 345.0
+offset_top = 92.0
+offset_right = 385.0
+offset_bottom = 123.0
+text = "七阶"
+
+[node name="7" type="Button" parent="CanvasLayer" unique_id=1743943585]
+offset_left = 438.0
+offset_top = 69.0
+offset_right = 478.0
+offset_bottom = 100.0
+text = "八阶"
+
+[node name="8" type="Button" parent="CanvasLayer" unique_id=2040325845]
+offset_left = 186.0
+offset_top = 328.0
+offset_right = 226.0
+offset_bottom = 359.0
+text = "九阶"
+
+[node name="9" type="Button" parent="CanvasLayer" unique_id=2071793141]
+offset_left = 366.0
+offset_top = 372.0
+offset_right = 406.0
+offset_bottom = 403.0
+text = "十阶"
+
+[node name="10" type="Button" parent="CanvasLayer" unique_id=2137882562]
+offset_left = 363.0
+offset_top = 166.0
+offset_right = 419.0
+offset_bottom = 197.0
+text = "十一阶"
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1214911312]
+position = Vector2(597, 259)
+
+[connection signal="button_down" from="CanvasLayer/1" to="." method="_on__button_down1"]
+[connection signal="button_down" from="CanvasLayer/2" to="." method="_on__button_down2"]
+[connection signal="button_down" from="CanvasLayer/3" to="." method="_on__button_down3"]
+[connection signal="button_down" from="CanvasLayer/4" to="." method="_on__button_down4"]
+[connection signal="button_down" from="CanvasLayer/5" to="." method="_on__button_down5"]
+[connection signal="button_down" from="CanvasLayer/6" to="." method="_on__button_down6"]
+[connection signal="button_down" from="CanvasLayer/7" to="." method="_on__button_down7"]
+[connection signal="button_down" from="CanvasLayer/8" to="." method="_on__button_down8"]
+[connection signal="button_down" from="CanvasLayer/9" to="." method="_on__button_down9"]
+[connection signal="button_down" from="CanvasLayer/10" to="." method="_on__button_down10"]

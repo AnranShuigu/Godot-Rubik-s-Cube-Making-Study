@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://b1f766f2msx83"]
+
+[ext_resource type="PackedScene" uid="uid://b6iadi8d6qv7l" path="res://资源/框.glb" id="1_k86lt"]
+
+[node name="框" unique_id=842593453 instance=ExtResource("1_k86lt")]
+
+[node name="柱体_014" parent="." index="0" unique_id=662268376]
+transform = Transform3D(0.33333334, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0)
