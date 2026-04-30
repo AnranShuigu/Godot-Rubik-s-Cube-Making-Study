@@ -3,7 +3,6 @@ extends Control
 @onready var button_star = $Button
 
 func _ready() -> void:
-	Input.set_custom_mouse_cursor(全局变量.cursor_texture, Input.CURSOR_ARROW, Vector2(8, 8))
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	pass
 

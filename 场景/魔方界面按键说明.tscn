@@ -1,0 +1,56 @@
+[gd_scene format=3 uid="uid://dairy3quos23w"]
+
+[node name="Control" type="Control" unique_id=424026481]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1682292876]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 12.0
+offset_right = 96.0
+offset_bottom = 116.0
+
+[node name="按键说明" type="Label" parent="VBoxContainer" unique_id=724914951]
+layout_mode = 2
+text = "按键说明："
+
+[node name="鼠标左键" type="Label" parent="VBoxContainer" unique_id=1582370271]
+layout_mode = 2
+text = "鼠标左键：旋转旋转部分"
+
+[node name="鼠标右键" type="Label" parent="VBoxContainer" unique_id=1695853226]
+layout_mode = 2
+text = "鼠标左键：旋转旋转部分"
+
+[node name="鼠标中键" type="Label" parent="VBoxContainer" unique_id=1891282145]
+layout_mode = 2
+text = "鼠标中键：隐藏鼠标并且旋转"
+
+[node name="R" type="Label" parent="VBoxContainer" unique_id=1726796134]
+layout_mode = 2
+text = "R：层选择"
+
+[node name="F" type="Label" parent="VBoxContainer" unique_id=1848490842]
+layout_mode = 2
+text = "F：列旋转"
+
+[node name="C" type="Label" parent="VBoxContainer" unique_id=1009808409]
+layout_mode = 2
+text = "C：面选择"
+
+[node name="A" type="Label" parent="VBoxContainer" unique_id=1243556565]
+layout_mode = 2
+text = "A：顺时针旋转"
+
+[node name="D" type="Label" parent="VBoxContainer" unique_id=1832531808]
+layout_mode = 2
+text = "D：逆时针旋转"
+
+[node name="H" type="Label" parent="VBoxContainer" unique_id=19570940]
+layout_mode = 2
+text = "H：隐藏/显示按键说明"
